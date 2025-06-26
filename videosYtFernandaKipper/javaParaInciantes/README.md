@@ -19,6 +19,8 @@ Vídeo disponível em: https://youtu.be/nODe5lFcGpg?si=INz4e4J_zBIWDbQd
 * Classe Abstrata
 * Herança
 * Polimorfismo
+---
+**3. TratandoExcecoes**
 
 
 ## Autor
