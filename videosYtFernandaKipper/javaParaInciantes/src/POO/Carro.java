@@ -1,3 +1,5 @@
+package POO;
+
 public interface Carro {
 
     void acelerar();

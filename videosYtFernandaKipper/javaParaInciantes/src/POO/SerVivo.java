@@ -1,3 +1,5 @@
+package POO;
+
 public abstract class SerVivo {
     protected int idade;
 

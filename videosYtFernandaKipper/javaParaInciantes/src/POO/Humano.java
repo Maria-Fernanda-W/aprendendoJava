@@ -1,3 +1,5 @@
+package POO;
+
 public class Humano extends SerVivo{
     String nome;
 

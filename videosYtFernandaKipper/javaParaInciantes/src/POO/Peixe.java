@@ -1,3 +1,5 @@
+package POO;
+
 public class Peixe extends SerVivo{
 
     public Peixe(int idade) {
