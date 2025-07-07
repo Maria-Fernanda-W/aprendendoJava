@@ -38,32 +38,26 @@ public class Agenda {
             String telefoneContato = scanner.nextLine();
             Contato contato = new Contato(nomeContato, telefoneContato);
 
-            try {
-                listaContatos.add(contato);
-                System.out.println("\nUsuário adicionado com sucesso!!");
-
-            } catch (NullPointerException e) {
-                System.out.println("Não foi possíviel adicionar contato!");
-                //return;
-            }
+            adicionarContatoPrivate(contato);
 
         } catch (Exception e) {
             System.out.println("ERRO: " + e);
         }
     }
 
-//   public void editarContato(String nome) {
-//       try {
-//
-//
-//       } catch (NullPointerException e) {
-//           System.out.println("Não foi possíviel editar contato!");
-//       }
-//   }
+    private void adicionarContatoPrivate(Contato contato) {
+        try {
+            listaContatos.add(contato);
+            System.out.println("Usuário adicionado com sucesso!!");
+
+        } catch (NullPointerException e) {
+            System.out.println("Não foi possíviel adicionar contato!");
+        }
+    }
 
     public void removerContato() {
         if (listaContatos.isEmpty()) {
-            System.out.println("\nATENÇÂO: Nenhuma agenda cadastrada");
+            System.out.println("ATENÇÂO: Nenhuma agenda cadastrada");
 
         } else {
             System.out.println("\n--> Agenda: " + nome + "\n>> LISTA CONTATOS ");
@@ -82,22 +76,47 @@ public class Agenda {
                 scanner.nextLine();
             }
 
-            listaContatos.remove(contato);
-
-            System.out.println("Contato excluído com sucesso! ");
+            removerContatoPrivate(contato);
         }
     }
 
-    public Contato pesquisarPorNome(String nome) {
+    public void removerContatoPrivate(Contato contato) {
+        try {
+            listaContatos.remove(contato);
+            System.out.println("Contato excluído com sucesso! ");
+
+        } catch (NullPointerException e) {
+            System.out.println("Não foi possíviel remover contato!");
+        }
+    }
+
+    public void pesquisarPorNome() {
+        System.out.println("\n>> Pesquisa por Nome");
+        System.out.print("Digite o nome para pesquisar: ");
+        String nome = scanner.nextLine();
+
+        Contato resultado = pesquisarPorNomePrivate(nome);
+
+        if( resultado == null ) {
+            System.out.println("ERRO: Contato não encontrado");
+        } else {
+            System.out.println("Resultado:");
+            System.out.println( resultado.toString() );
+
+        }
+    }
+
+    private Contato pesquisarPorNomePrivate(String nome) {
+        nome = nome.trim().toUpperCase();
         int inf = 0;
         int sup = listaContatos.size() - 1;
 
         while (inf <= sup) {
             int med = (inf + sup) / 2;
 
-            if (listaContatos.get(med).getNome().compareToIgnoreCase(nome) == 0) {
+            if (listaContatos.get(med).getNome().trim().toUpperCase().compareToIgnoreCase(nome) == 0) {
                 return listaContatos.get(med);
-            } else if (listaContatos.get(med).getNome().compareToIgnoreCase(nome) > 0) {
+            } else if (listaContatos.get(med).getNome().trim().toUpperCase().compareToIgnoreCase(nome) > 0) {
                 sup = med - 1;
             } else {
                 inf = med + 1;
@@ -106,7 +125,24 @@ public class Agenda {
         return null;
     }
 
-    public Contato pesquisarPorTelefone(String telefone) {
+    public void pesquisarPorTelefone() {
+        System.out.println("\n>> Pesquisa por Telefone");
+        System.out.print("Digite o telefone para pesquisar: ");
+        String telefone = scanner.nextLine();
+
+        Contato resultado = pesquisarPorTelefonePrivate(telefone);
+
+        if( resultado == null ) {
+            System.out.println("ERRO: Contato não encontrado");
+        } else {
+            System.out.println("Resultado:");
+            System.out.println( resultado.toString() );
+
+        }
+    }
+
+    private Contato pesquisarPorTelefonePrivate(String telefone) {
+        telefone = telefone.trim().toUpperCase();
         int inf = 0;
         int sup = listaContatos.size() - 1;
 

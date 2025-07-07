@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Arrays;
-
 public class Contato {
     String nome;
     String telefone;
@@ -28,9 +26,8 @@ public class Contato {
     }
 
     public String toString() {
-        return "Contato: \n" +
-                "Nome: " + nome + "\n" +
-                "Telefone: " + telefone ;
+        return "Nome: " + nome + "\n" +
+               "Telefone: " + telefone ;
     }
 
 }

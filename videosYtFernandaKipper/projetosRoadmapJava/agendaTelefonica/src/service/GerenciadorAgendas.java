@@ -28,12 +28,20 @@ public class GerenciadorAgendas {
             System.out.println("Informe o nome para criar a Agenda");
             String nomeAgenda = scanner.nextLine();
             Agenda agenda = new Agenda(nomeAgenda);
-            listaAgendas.add(agenda);
-
-            System.out.println("\nAgenda adicionada com sucesso!!");
+            adicionarAgendaPrivate(agenda);
 
         } catch (Exception e) {
             System.out.println("ERRO: " + e);
+        }
+    }
+
+    private void adicionarAgendaPrivate(Agenda agenda) {
+        try {
+            listaAgendas.add(agenda);
+            System.out.println("Agenda adicionada com sucesso!!");
+
+        } catch (NullPointerException e) {
+            System.out.println("ERRO:Não foi possível adicionar agenda.");
         }
     }
 
@@ -59,9 +67,17 @@ public class GerenciadorAgendas {
                 scanner.nextLine();
             }
 
-            listaAgendas.remove(agenda);
+            removerAgendaPrivate(agenda);
+        }
+    }
 
+    private void removerAgendaPrivate(Agenda agenda) {
+        try {
+            listaAgendas.remove(agenda);
             System.out.println("Agenda excluída com sucesso! ");
+
+        } catch (NullPointerException e) {
+            System.out.println("ERRO:Não foi possível excluir agenda.");
         }
     }
 
@@ -117,16 +133,18 @@ public class GerenciadorAgendas {
                         agendaAberta.removerContato();
                         break;
                     case 4:
-                        System.out.println("opção 4");
+                        agendaAberta.pesquisarPorNome();
+                        break;
                     case 5:
-                        System.out.println("opção 5");
+                        agendaAberta.pesquisarPorTelefone();
+                        break;
                     case 6:
                         break;
                     default:
                         System.out.println("\nERRO: Opção Inválida. \nTente Novamente!");
                         break;
                 }
-            } while (menuAgenda != 4);
+            } while (menuAgenda != 6);
 
             System.out.println("\nVoltando ...");
         }
