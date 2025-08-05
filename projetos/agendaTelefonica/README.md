@@ -1,4 +1,4 @@
-# 📒 Agenda Telefônica
+# 📖 Agenda Telefônica
 
 Este projeto é uma aplicação de linha de comando desenvolvida em **Java** que permite ao usuário 
 criar e gerenciar múltiplas agendas de contatos. Cada agenda armazena uma lista de contatos com 
