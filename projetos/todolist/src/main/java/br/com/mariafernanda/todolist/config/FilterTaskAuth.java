@@ -1,17 +1,15 @@
-package br.com.mariafernanda.todolist.filter;
+package br.com.mariafernanda.todolist.config;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import br.com.mariafernanda.todolist.user.IUserRepository;
+import br.com.mariafernanda.todolist.repository.IUserRepository;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Base64;
 
 @Component //par ao spring detectar e registrar automaticamente
@@ -29,9 +27,10 @@ public class FilterTaskAuth extends OncePerRequestFilter {
             HttpServletResponse response, //resposta
             FilterChain filterChain //acesso para passar adiente a requisição
     ) throws ServletException, IOException {
+
         var servletPath = request.getServletPath(); //pega o endpoint da requisição
 
-        if (servletPath.startsWith("/tasks")) { //se começar com /tasks/
+        if (servletPath.startsWith("/tasks")) { //se começar com /tasks
             ////1. Recupera a autenticação (username, password)
             var auth = request.getHeader("Authorization");
             //a authorization vem criptografada(encode) em base64, exemplo "Basic bWFyaWFmdzoxMjM0"

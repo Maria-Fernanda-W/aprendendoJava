@@ -1,5 +1,6 @@
-package br.com.mariafernanda.todolist.user;
+package br.com.mariafernanda.todolist.repository;
 
+import br.com.mariafernanda.todolist.model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

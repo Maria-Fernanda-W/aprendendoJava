@@ -23,7 +23,7 @@ Aprimoramento do projeto desenvolvido em estudos/todolist
    ```
 
 2. **Abra o projeto em sua IDE (IntelliJ, Eclipse, VSCode, etc.)**
-caminho: aprendendoJavaPrivate/projetos/todolistApi
+caminho: aprendendoJavaPrivate/projetos/todolist
 
 3. **Execute a aplicação:**
     - Via IDE: Rode a classe `TodolistApplication.java`
@@ -48,7 +48,8 @@ caminho: aprendendoJavaPrivate/projetos/todolistApi
 
 - `GET /tasks` – Lista todas as tarefas do usuário
 - `POST /tasks` – Cria uma nova tarefa
-- `PUT /tasks/{id}` – Atualiza uma tarefa existente
+- `PUT /tasks/{id}` – Atualiza uma tarefa
+- `DELETE /tasks/{id}` – Apaga uma tarefa
 
 > **Nota:** Autenticação simples (basic auth) baseada no usuário (implementação com filtro).
 
@@ -59,27 +60,40 @@ caminho: aprendendoJavaPrivate/projetos/todolistApi
 📁 main
 ├──📁 java
 │   └──📁 br.com.mariafernanda.todolist 
-│       ├──📁 errors
-│       │   └── ExceptionHandlerController.java
-|       |
-│       ├──📁 filter
+│       ├──📁 config
+│       │   ├── ExceptionHandlerController.java
 │       │   └── FilterTaskAuth.java
-|       | 
-│       ├──📁 task
+│       │
+│       ├──📁 controller
 │       │   ├── TaskController.java
+│       │   └── UserController.java
+│       │
+│       ├──📁 dto
+│       │   ├── 📁 request
+│       │   │   ├── TaskRequestDTO
+│       │   │   └── UserRequestDTO
+│       │   │
+│       │   └── 📁 response
+│       │       ├── TaskResponseDTO
+│       │       └── UserResponseDTO
+│       │ 
+│       ├──📁 model
 │       │   ├── TaskModel.java
-│       │   └── ITaskRepository.java
-|       | 
-│       ├──📁 user
-│       │   ├── UserController.java
-│       │   ├── UserModel.java
+│       │   └── UserModel.java
+│       │ 
+│       ├──📁 repository
+│       │   ├── ITaskRepository.java
 │       │   └── IUserRepository.java
-|       | 
+│       │ 
+│       ├──📁 service
+│       │   ├── TaskService.java
+│       |   └── UserService.java
+│       │
 │       ├──📁 utils
-│       |   └── Utils.java
-|       | 
-|       └── TodolistApplication.java
-|       
+│       │   └── Utils.java
+│       │
+│       └── TodolistApplication.java
+│       
 └──📁 resources
     └── application.properties
 ```

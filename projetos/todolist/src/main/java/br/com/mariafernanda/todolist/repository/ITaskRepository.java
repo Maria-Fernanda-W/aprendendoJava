@@ -1,5 +1,6 @@
-package br.com.mariafernanda.todolist.task;
+package br.com.mariafernanda.todolist.repository;
 
+import br.com.mariafernanda.todolist.model.TaskModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
