@@ -16,21 +16,15 @@ public class UserService {
     @Autowired //para o spring fazer a injeção de dependências
     private IUserRepository userRepository;
 
-    public ResponseEntity create(UserRequestDTO dto
-    ) {
-        System.out.println("User Service - create");
-
-
+    public ResponseEntity create(UserRequestDTO dto) {
         UserModel user = this.userRepository.findByUsername(dto.getUsername()); //procura o usuário pelo nome
         if (user != null) { //se encontrar usuário
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já existe");
         }
 
-        var passwordHashed = BCrypt.withDefaults().hashToString( //faz a criptografia
-                                                                 12, //nível de criptografia
-                                                                 dto.getPassword().toCharArray()
-                                                                 //passa a senha como array de char
-        );
+        //faz a criptografia da senha
+        var passwordHashed = BCrypt.withDefaults().hashToString(12, //nível de criptografia
+                                                                dto.getPassword().toCharArray());
         dto.setPassword(passwordHashed); //altera no objeto para senha criptografada
 
         //Recebe um UserRequestDTO converte para  User Model
@@ -44,7 +38,8 @@ public class UserService {
         //Converte o UserModel para UserResponseDTO
         UserResponseDTO responseDTO = new UserResponseDTO(userCreated);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO); //retornar status 201 e o usuário(UserResponseDTO) criado
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                responseDTO); //retornar status 201 e o usuário(UserResponseDTO) criado
     }
 
 }

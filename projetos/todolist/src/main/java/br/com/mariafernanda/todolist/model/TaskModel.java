@@ -36,11 +36,11 @@ public class TaskModel {
 
     //setter personalizado validando a quantidade de caracteres
     //esse setter substitui o gerado automaticamente pelo Lombok.
-    public void setTitle(String title) throws Exception{
+    /*public void setTitle(String title) throws Exception{
         if(title.length() > 50) { //se for maior que 50 lança a execeção
             throw new Exception("O campo title deve conter no máximo 50 caracteres");
         }
         this.title = title;
-    }
+    }*/
 
 }

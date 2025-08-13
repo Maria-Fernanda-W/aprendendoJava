@@ -26,20 +26,6 @@ public class TaskService {
     public ResponseEntity create(@RequestBody TaskRequestDTO dto, //body da requição
                                  HttpServletRequest request //path da requição
     ) {
-        var currentDate = LocalDateTime.now(); //pega o valor da data atual
-
-        //se a data atual for maior que a data de inicio da tarefa
-        if (currentDate.isAfter(dto.getStartAt())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                    "A data/hora de início deve ser maior ou igual a atual");
-        }
-
-        //se a data atual for maior que a data final da tarefa
-        if (currentDate.isAfter(dto.getEndAt())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                    "A data/hora final deve ser maior ou igual a atual");
-        }
-
         //se a data de final for menor ou igual a inicial
         if (dto.getEndAt().isBefore(dto.getStartAt()) || dto.getEndAt().isEqual(dto.getStartAt())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
@@ -50,11 +36,7 @@ public class TaskService {
         //taskModel.setIdUser((UUID) idUser); //altera o idUser da task
 
         TaskModel model = new TaskModel();
-        try {
-            model.setTitle(dto.getTitle());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        model.setTitle(dto.getTitle());
         model.setDescription(dto.getDescription());
         model.setStartAt(dto.getStartAt());
         model.setEndAt(dto.getEndAt());
@@ -102,18 +84,6 @@ public class TaskService {
         }
 
         Utils.copyNonNullProperties(dto, task); //altera na task apenas as infromações passadas
-
-        TaskModel model = new TaskModel();
-        try {
-            model.setTitle(dto.getTitle());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        model.setDescription(dto.getDescription());
-        model.setStartAt(dto.getStartAt());
-        model.setEndAt(dto.getEndAt());
-        model.setPriority(dto.getPriority());
-        model.setIdUser((UUID) idUser);
 
         var taskUpdated = this.taskRepository.save(task); //salva a alteração
 
